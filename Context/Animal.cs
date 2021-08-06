@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -15,5 +17,7 @@ namespace HustleWebAPI.Context
         public string Gender { get; set; }
         [Newtonsoft.Json.JsonProperty(PropertyName = "weight")]
         public decimal? Weight { get; set; }
+        [Newtonsoft.Json.JsonProperty(PropertyName = "model")]
+        public JObject Model { get; set; }
     }
 }

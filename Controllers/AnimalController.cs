@@ -7,9 +7,13 @@ using Microsoft.Azure.Documents;
 using Microsoft.Azure.Documents.Client;
 using Microsoft.Extensions.Configuration;
 
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace HustleWebAPI.Controllers
@@ -60,7 +64,15 @@ namespace HustleWebAPI.Controllers
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] Animal animal)
         {
-            var response = await _documentClient.CreateDocumentAsync(UriFactory.CreateDocumentCollectionUri(databaseId, collectionId), animal);
+            try
+            {
+                var response = await _documentClient.UpsertDocumentAsync(UriFactory.CreateDocumentCollectionUri(databaseId, collectionId), animal);
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }            
             return Ok();
         }
 

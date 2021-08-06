@@ -37,7 +37,8 @@ namespace HustleWebAPI
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddControllers();
+            services.AddControllers()
+            .AddNewtonsoftJson();
             services.AddSingleton<IDocumentClient>(x => new DocumentClient(new Uri(Configuration["CosmosDB:URL"]), Configuration["CosmosDB:PrimaryKey"]));
             services.AddSwaggerGen(c =>
             {
